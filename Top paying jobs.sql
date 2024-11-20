@@ -7,19 +7,23 @@
  * then i will filter it with my role which is data analyst
  */
 
-select
+SELECT
 	jpf.job_id,
 	jpf.company_id,
-	jpf.job_title_short,
+	jpf.job_title,
 	jpf.salary_year_avg,
+	jpf.job_location,
 	cd.name
-from
+FROM
 	job_postings_fact jpf
-join company_dim cd 
+JOIN company_dim cd 
 	on
 	jpf.company_id = cd.company_id
-where
+WHERE
 	jpf.salary_year_avg is not null
-	and jpf.job_title_short = 'Data Analyst'
-order by
-	jpf.salary_year_avg desc;
+	AND jpf.job_title_short = 'Data Analyst'
+	AND jpf.job_location = 'Anywhere'
+ORDER BY
+	jpf.salary_year_avg desc
+LIMIT
+	10;

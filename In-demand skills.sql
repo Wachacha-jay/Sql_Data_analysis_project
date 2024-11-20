@@ -5,21 +5,21 @@
  *  
  */
 
-select
+SELECT
 	sd.skills,
 	count(sjd.skill_id) as skill_demand
-from
+FROM
 	job_postings_fact jpf
-left join skills_job_dim sjd 
-	on
+LEFT JOIN skills_job_dim sjd 
+	ON
 	jpf.job_id = sjd.job_id
-join skills_dim sd 
-	on
+JOIN skills_dim sd 
+	ON
 	sjd.skill_id = sd.skill_id
-where
+WHERE
 	jpf.job_title_short = 'Data Analyst'
-group by 
+GROUP BY 
 	sd.skills 
-order by
+ORDER BY
 	skill_demand desc 
-limit 5;
+LIMIT 5;
